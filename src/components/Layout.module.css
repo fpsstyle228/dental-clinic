@@ -1,0 +1,24 @@
+.wrapper {
+  min-height: 100svh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+.main {
+  padding-top: 24px;
+  padding-bottom: 48px;
+}
+
+.footer {
+  border-top: 1px solid #ececec;
+  padding: 24px 0;
+  color: #666;
+  text-align: center;
+}
+
+/* Simple container utility class (already referenced in many components) */
+.container {
+  max-width: 1100px;
+  margin-inline: auto;
+  padding-inline: 16px;
+}

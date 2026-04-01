@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:kazo.clinic)",
+      "Bash(grep -E \"\\\\.\\(js|jsx|ts|tsx\\)$\")",
+      "Bash(grep -E \"\\\\.\\(js|ts|json|css|mjs\\)$\")",
+      "Bash(node -e \"const pkg = require\\(''./node_modules/tailwindcss/package.json''\\); console.log\\(pkg.version\\)\")",
+      "Bash(npm install:*)",
+      "Bash(node -e \"const pkg = require\\(''./node_modules/tailwindcss/package.json''\\); console.log\\(pkg.version\\)\" --prefix \"C:\\\\Users\\\\Сашка\\\\WebstormProjects\\\\dental-clinic\")",
+      "Bash(node -e \"const pkg = require\\(''C:/Users/Сашка/WebstormProjects/dental-clinic/node_modules/tailwindcss/package.json''\\); console.log\\(pkg.version\\)\")"
+    ]
+  }
+}
