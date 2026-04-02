@@ -47,12 +47,6 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
             </p>
             <div className="flex gap-4 flex-wrap items-center">
               <Link
-                href="services"
-                className="inline-block bg-black text-white px-10 py-4 text-[11px] font-bold uppercase tracking-[0.2em] hover:bg-[#b19172] transition-colors duration-300"
-              >
-                {t("common:learn_more")}
-              </Link>
-              <Link
                 href="contacts"
                 className="inline-block border border-black text-black px-10 py-4 text-[11px] font-bold uppercase tracking-[0.2em] hover:border-[#b19172] hover:text-[#b19172] transition-colors duration-300"
               >
@@ -78,7 +72,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
         {[1, 2, 3, 4, 5, 6].map((i) => {
           const isEven = i % 2 === 0;
           return (
-            <div key={i} className="relative h-[800px] overflow-hidden">
+            <div key={i} className="relative h-[800px] overflow-hidden mx-auto max-w-container">
               {/* Photo / gradient — full card background */}
               <div
                 className="absolute inset-0"

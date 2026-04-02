@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ReactNode } from "react";
 import Nav from "@/components/Nav";
+import Footer from "@/components/Footer";
 import { loadTranslations, makeT } from "@/lib/i18n.server";
 import { supportedLocales, type Locale } from "@/lib/i18n.server";
 
@@ -22,10 +23,10 @@ export default async function LocaleLayout({
   params,
 }: {
   children: ReactNode;
-  params: { locale: Locale };
+  params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  const dicts = await loadTranslations(locale, ["common"]);
+  const dicts = await loadTranslations(locale, ["common", "contacts"]);
   const t = makeT(dicts);
 
   return (
@@ -38,20 +39,22 @@ export default async function LocaleLayout({
         navServices={t("common:nav_services")}
         navGallery={t("common:nav_gallery")}
         navContacts={t("common:nav_contacts")}
-        phone={t("common:phone")}
-        phoneRaw={t("common:phone_raw")}
+        phone={t("contacts:phone_number")}
+        phoneRaw={t("contacts:phone_raw")}
       />
       <main>{children}</main>
-      <footer className="border-t border-gray-100 py-8 bg-white">
-        <div className="max-w-container mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-3">
-          <span className="text-xs font-bold text-black uppercase tracking-[0.2em]">
-            {t("common:clinic_name")}
-          </span>
-          <span className="text-xs text-[#919191]">
-            © {new Date().getFullYear()} {t("common:clinic_name")}. {t("common:all_rights_reserved")}
-          </span>
-        </div>
-      </footer>
+      <Footer
+        clinicShortName={t("common:clinic_short_name")}
+        footerTagline={t("common:footer_tagline")}
+        copyright={t("common:footer_copyright")}
+        mailLabel={t("common:footer_mail")}
+        callLabel={t("common:footer_call_us")}
+        locationLabel={t("common:footer_location")}
+        email={t("contacts:email_value")}
+        phone={t("contacts:phone_number")}
+        phoneRaw={t("contacts:phone_raw")}
+        address={t("contacts:address_value")}
+      />
     </div>
   );
 }

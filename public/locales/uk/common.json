@@ -1,5 +1,6 @@
 {
   "clinic_name": "Kazo Dental Clinic",
+  "clinic_short_name": "KAZO",
   "tagline": "Турбота про усмішки",
   "site_description": "Сучасна стоматологічна клініка: профілактика, естетична та хірургічна стоматологія. Запишіться на прийом уже сьогодні!",
   "nav_home": "Головна",
@@ -7,5 +8,10 @@
   "nav_gallery": "Галерея",
   "nav_contacts": "Контакти",
   "learn_more": "Детальніше",
-  "all_rights_reserved": "Усі права захищені."
+  "all_rights_reserved": "Усі права захищені.",
+  "footer_tagline": "YOUNIQUE",
+  "footer_mail": "MAIL",
+  "footer_call_us": "CALL US",
+  "footer_location": "LOCATION",
+  "footer_copyright": "Copyright ©2020 KAZO | All Rights Reserved."
 }

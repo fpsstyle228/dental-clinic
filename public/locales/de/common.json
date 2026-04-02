@@ -1,5 +1,6 @@
 {
   "clinic_name": "Kazo Dental Clinic",
+  "clinic_short_name": "KAZO",
   "tagline": "Pflegende Lächeln",
   "site_description": "Moderne Zahnklinik für vorbeugende, ästhetische und chirurgische Zahnheilkunde. Buchen Sie noch heute einen Termin!",
   "nav_home": "Startseite",
@@ -7,5 +8,10 @@
   "nav_gallery": "Galerie",
   "nav_contacts": "Kontakt",
   "learn_more": "Mehr erfahren",
-  "all_rights_reserved": "Alle Rechte vorbehalten."
+  "all_rights_reserved": "Alle Rechte vorbehalten.",
+  "footer_tagline": "YOUNIQUE",
+  "footer_mail": "MAIL",
+  "footer_call_us": "CALL US",
+  "footer_location": "LOCATION",
+  "footer_copyright": "Copyright ©2020 KAZO | All Rights Reserved."
 }

@@ -1,5 +1,6 @@
 {
   "clinic_name": "Kazo Dental Clinic",
+  "clinic_short_name": "KAZO",
   "tagline": "Sonrisas con cuidado",
   "site_description": "Clínica dental moderna que ofrece odontología preventiva, estética y quirúrgica. ¡Reserva tu cita hoy!",
   "nav_home": "Inicio",
@@ -7,5 +8,10 @@
   "nav_gallery": "Galería",
   "nav_contacts": "Contacto",
   "learn_more": "Más información",
-  "all_rights_reserved": "Todos los derechos reservados."
+  "all_rights_reserved": "Todos los derechos reservados.",
+  "footer_tagline": "YOUNIQUE",
+  "footer_mail": "MAIL",
+  "footer_call_us": "CALL US",
+  "footer_location": "LOCATION",
+  "footer_copyright": "Copyright ©2020 KAZO | All Rights Reserved."
 }

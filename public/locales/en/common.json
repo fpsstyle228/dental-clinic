@@ -1,5 +1,6 @@
 {
   "clinic_name": "Kazo Dental Clinic",
+  "clinic_short_name": "KAZO",
   "tagline": "Caring Smiles",
   "site_description": "Modern dental clinic offering preventive, cosmetic and surgical dentistry. Book your appointment today!",
   "nav_home": "Home",
@@ -8,11 +9,9 @@
   "nav_contacts": "Contacts",
   "learn_more": "Learn more",
   "all_rights_reserved": "All rights reserved.",
-  "address_street": "123 Smile Ave",
-  "address_city": "Santiago, Chile",
-  "address_country": "Chile",
-  "phone": "+56 2 2345 6789",
-  "phone_raw": "+56223456789",
-  "email": "info@kazo.clinic",
-  "hours": "Mon–Fri 09:00–18:00"
+  "footer_tagline": "YOUNIQUE",
+  "footer_mail": "MAIL",
+  "footer_call_us": "CALL US",
+  "footer_location": "LOCATION",
+  "footer_copyright": "Copyright ©2020 KAZO | All Rights Reserved."
 }

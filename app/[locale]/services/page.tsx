@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { loadTranslations, makeT } from "@/lib/i18n.server";
 import type { Locale } from "@/lib/i18n.server";
 
-export async function generateMetadata({ params }: { params: { locale: Locale } }): Promise<Metadata> {
-  const dicts = await loadTranslations(params.locale, ["services"]);
+export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const dicts = await loadTranslations(locale, ["services"]);
   const t = makeT(dicts);
   return {
     title: t("services:meta_title"),
@@ -11,19 +13,52 @@ export async function generateMetadata({ params }: { params: { locale: Locale } 
   };
 }
 
-export default async function ServicesPage({ params }: { params: { locale: Locale } }) {
-  const dicts = await loadTranslations(params.locale, ["services"]);
+export default async function ServicesPage({ params }: { params: Promise<{ locale: Locale }> }) {
+  const { locale } = await params;
+  const dicts = await loadTranslations(locale, ["services"]);
   const t = makeT(dicts);
 
   return (
-    <div className="max-w-container mx-auto px-4 pt-6 pb-10">
-      <h1 className="text-3xl font-bold mb-3">{t("services:headline")}</h1>
-      <p className="leading-7 text-gray-800">{t("services:intro")}</p>
-      <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-4">
+    <div className="max-w-container mx-auto px-4 pt-8 pb-16">
+      {/* Header */}
+      <div className="flex items-start justify-between gap-8 mb-8">
+        <p className="text-sm text-[var(--color-brand)] max-w-xs leading-relaxed mt-2">
+          {t("services:intro")}
+        </p>
+        <h1 className="text-7xl font-black uppercase tracking-tight leading-none">
+          {t("services:headline")}
+        </h1>
+      </div>
+
+      {/* CTA Button */}
+      <div className="flex justify-end mb-12">
+        <Link
+          href={`/${locale}/contacts`}
+          className="border border-black px-8 py-3 text-sm font-bold uppercase tracking-widest hover:bg-black hover:text-white transition-colors"
+        >
+          {t("services:book_cta")}
+        </Link>
+      </div>
+
+      {/* Services list */}
+      <div className="space-y-3">
         {[1, 2, 3, 4, 5, 6].map((i) => (
-          <div key={i} className="border border-gray-200 rounded-xl p-4 bg-white shadow-card">
-            <h3 className="font-semibold text-lg">{t(`services:item_${i}_title`)}</h3>
-            <p className="leading-7 text-gray-800">{t(`services:item_${i}_desc`)}</p>
+          <div key={i} className="border border-gray-200 rounded-xl p-5 flex items-start gap-5">
+            <span className="text-gray-400 text-sm font-light w-6 flex-shrink-0 pt-1">
+              {String(i).padStart(2, "0")}
+            </span>
+            <div className="w-20 h-20 rounded-full bg-gray-200 flex-shrink-0" />
+            <div className="flex-1 min-w-0">
+              <h3 className="font-black text-lg uppercase mb-1">
+                {t(`services:item_${i}_title`)}
+              </h3>
+              <p className="text-sm text-gray-600 leading-relaxed">
+                {t(`services:item_${i}_desc`)}
+              </p>
+            </div>
+            <div className="text-[var(--color-brand)] font-bold text-xl flex-shrink-0 text-right min-w-[6rem]">
+              {t(`services:item_${i}_price`)}
+            </div>
           </div>
         ))}
       </div>
