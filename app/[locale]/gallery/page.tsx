@@ -3,6 +3,8 @@ import { loadTranslations, makeT } from "@/lib/i18n.server";
 import type { Locale } from "@/lib/i18n.server";
 import GalleryClient from "@/components/GalleryClient";
 
+export const dynamic = "force-static";
+
 export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }): Promise<Metadata> {
   const { locale } = await params;
   const dicts = await loadTranslations(locale, ["gallery"]);
@@ -21,7 +23,7 @@ export default async function GalleryPage({ params }: { params: Promise<{ locale
   return (
     <div className="max-w-container mx-auto px-4 pt-8 pb-16">
       <div className="flex justify-end">
-        <h1 className="text-7xl font-black uppercase tracking-tight leading-none">
+        <h1 className="text-4xl font-black uppercase tracking-tight leading-none md:text-7xl">
           {t("gallery:headline")}
         </h1>
       </div>

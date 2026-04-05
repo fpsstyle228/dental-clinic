@@ -3,6 +3,8 @@ import Link from "next/link";
 import { loadTranslations, makeT } from "@/lib/i18n.server";
 import type { Locale } from "@/lib/i18n.server";
 
+export const dynamic = "force-static";
+
 export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }): Promise<Metadata> {
   const { locale } = await params;
   const dicts = await loadTranslations(locale, ["services"]);
@@ -21,11 +23,11 @@ export default async function ServicesPage({ params }: { params: Promise<{ local
   return (
     <div className="max-w-container mx-auto px-4 pt-8 pb-16">
       {/* Header */}
-      <div className="flex items-start justify-between gap-8 mb-8">
-        <p className="text-sm text-[var(--color-brand)] max-w-xs leading-relaxed mt-2">
+      <div className="flex flex-col-reverse gap-4 mb-8 md:flex-row md:items-start md:justify-between md:gap-8">
+        <p className="text-sm text-[var(--color-brand)] max-w-xs leading-relaxed md:mt-2">
           {t("services:intro")}
         </p>
-        <h1 className="text-7xl font-black uppercase tracking-tight leading-none">
+        <h1 className="text-4xl font-black uppercase tracking-tight leading-none md:text-7xl">
           {t("services:headline")}
         </h1>
       </div>

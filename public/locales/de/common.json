@@ -1,6 +1,6 @@
 {
-  "clinic_name": "Kazo Dental Clinic",
-  "clinic_short_name": "KAZO",
+  "clinic_name": "Advance Dental Clinic - Individual Smile",
+  "clinic_short_name": "ADVANCE",
   "tagline": "Pflegende Lächeln",
   "site_description": "Moderne Zahnklinik für vorbeugende, ästhetische und chirurgische Zahnheilkunde. Buchen Sie noch heute einen Termin!",
   "nav_home": "Startseite",
@@ -13,5 +13,6 @@
   "footer_mail": "MAIL",
   "footer_call_us": "CALL US",
   "footer_location": "LOCATION",
-  "footer_copyright": "Copyright ©2020 KAZO | All Rights Reserved."
+  "footer_copyright": "Copyright ©2025 ADVANCE | All Rights Reserved.",
+  "sidebar_desc": "Wir bieten alle Arten von Zahnbehandlungen an. Rufen Sie uns für weitere Informationen an."
 }

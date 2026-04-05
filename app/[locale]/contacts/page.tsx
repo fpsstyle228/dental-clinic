@@ -4,6 +4,8 @@ import ContactsForm from "@/components/contactsForm";
 import { loadTranslations, makeT } from "@/lib/i18n.server";
 import type { Locale } from "@/lib/i18n.server";
 
+export const dynamic = "force-static";
+
 export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }): Promise<Metadata> {
   const { locale } = await params;
   const dicts = await loadTranslations(locale, ["contacts"]);
@@ -24,7 +26,7 @@ export default async function ContactsPage({ params }: { params: Promise<{ local
   return (
     <div className="max-w-container mx-auto px-4 pt-8 pb-16">
       {/* Heading */}
-      <h1 className="text-7xl font-black uppercase tracking-tight leading-none text-center mb-10">
+      <h1 className="text-4xl font-black uppercase tracking-tight leading-none text-center mb-10 md:text-7xl">
         {t("contacts:headline")}
       </h1>
 

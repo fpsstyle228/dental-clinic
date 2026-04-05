@@ -1,6 +1,6 @@
 {
-  "clinic_name": "Kazo Dental Clinic",
-  "clinic_short_name": "KAZO",
+  "clinic_name": "Advance Dental Clinic - Individual Smile",
+  "clinic_short_name": "ADVANCE",
   "tagline": "Caring Smiles",
   "site_description": "Modern dental clinic offering preventive, cosmetic and surgical dentistry. Book your appointment today!",
   "nav_home": "Home",
@@ -13,5 +13,6 @@
   "footer_mail": "MAIL",
   "footer_call_us": "CALL US",
   "footer_location": "LOCATION",
-  "footer_copyright": "Copyright ©2020 KAZO | All Rights Reserved."
+  "footer_copyright": "Copyright ©2025 ADVANCE | All Rights Reserved.",
+  "sidebar_desc": "We provide all types of dental services. Call us for more information!"
 }

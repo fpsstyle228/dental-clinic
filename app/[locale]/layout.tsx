@@ -35,6 +35,9 @@ export default async function LocaleLayout({
         locale={locale}
         locales={supportedLocales.map((code) => ({ code, label: localeLabelMap[code] ?? code.toUpperCase() }))}
         brand={t("common:clinic_name")}
+        clinicShortName={t("common:clinic_short_name")}
+        footerTagline={t("common:footer_tagline")}
+        sidebarDesc={t("common:sidebar_desc")}
         navHome={t("common:nav_home")}
         navServices={t("common:nav_services")}
         navGallery={t("common:nav_gallery")}

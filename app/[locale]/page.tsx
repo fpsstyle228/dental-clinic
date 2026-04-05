@@ -3,16 +3,16 @@ import type { Metadata } from "next";
 import { loadTranslations, makeT } from "@/lib/i18n.server";
 import type { Locale } from "@/lib/i18n.server";
 
-// Dark gradient backgrounds simulating darkened photo overlays.
-// Swap any value with a real photo: "url('/images/svc-1.jpg') center/cover no-repeat"
-const SERVICE_BG = [
-  "linear-gradient(150deg, #1c1713 0%, #2c2018 100%)",
-  "linear-gradient(150deg, #101b12 0%, #1a2e1d 100%)",
-  "linear-gradient(150deg, #0f1420 0%, #192135 100%)",
-  "linear-gradient(150deg, #1a0f14 0%, #2e1820 100%)",
-  "linear-gradient(150deg, #1c1208 0%, #2e2010 100%)",
-  "linear-gradient(150deg, #0d1518 0%, #16252f 100%)",
+const SERVICE_IMAGES = [
+  "/images/main-page/DOCTOR_CONSULTATION.jpg",
+  "/images/main-page/PREVENTIVE_PERIODONTAL_TREATMENT.jpg",
+  "/images/main-page/TEETH_WHITENING.jpg",
+  "/images/main-page/MEDICAL_SEDATION.jpg",
+  "/images/main-page/CARIES_TREATMENT.jpg",
+  "/images/main-page/DENTAL_IMPLANTS.jpg",
 ];
+
+export const dynamic = "force-static";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -33,9 +33,44 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
     <div className="bg-white">
 
       {/* ── Hero ── */}
-      <section className="border-b border-gray-100 py-24 md:py-36">
-        <div className="max-w-container mx-auto px-6">
-          <div className="max-w-3xl">
+      <section className="relative min-h-screen flex items-end md:items-stretch md:min-h-0 md:border-b md:border-gray-100 md:py-36">
+        {/* Mobile background */}
+        <div
+          className="absolute inset-0 md:hidden"
+          style={{ backgroundImage: `url(/images/main-page/hero.jpg)`, backgroundSize: "cover", backgroundPosition: "center" }}
+          aria-hidden="true"
+        />
+
+        <div className="relative w-full max-w-container mx-auto px-6">
+          {/* Mobile layout */}
+          <div className="md:hidden pb-10 pt-28 bg-gradient-to-t from-black/75 via-black/40 to-transparent -mx-6 px-6">
+            <p className="text-[#b19172] text-[11px] font-bold uppercase tracking-[0.3em] mb-4">
+              {t("home:eyebrow")}
+            </p>
+            <h1 className="text-[2.5rem] font-bold leading-tight text-white mb-2">
+              {t("home:headline")}
+            </h1>
+            <p className="text-[1.25rem] font-bold text-[#b19172] italic leading-tight mb-4">
+              {t("home:subheadline")}
+            </p>
+            <div className="flex flex-col gap-3 mt-6">
+              <Link
+                href={`/${locale}/contacts`}
+                className="block bg-black text-white text-center py-4 text-[11px] font-bold uppercase tracking-[0.2em]"
+              >
+                {t("home:cta")}
+              </Link>
+              <Link
+                href={`/${locale}/services`}
+                className="block border border-white text-center py-4 text-[11px] font-bold uppercase tracking-[0.2em]"
+              >
+               <span className="text-white">{t("home:consultation")}</span>
+              </Link>
+            </div>
+          </div>
+
+          {/* Desktop layout */}
+          <div className="hidden md:block max-w-3xl py-0">
             <p className="text-[#b19172] text-[11px] font-bold uppercase tracking-[0.3em] mb-6">
               {t("home:eyebrow")}
             </p>
@@ -57,36 +92,46 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
         </div>
       </section>
 
+      {/* ── Services section header (desktop only) ── */}
+      <div className="hidden md:block max-w-container mx-auto px-6 pt-16 pb-12">
+        <p className="text-[#b19172] text-[10px] font-bold uppercase tracking-[0.3em] mb-3">
+          {t("home:services_eyebrow")}
+        </p>
+        <h2 className="text-3xl font-bold text-black mb-4">{t("home:popular_services")}</h2>
+        <div className="w-8 h-[2px] bg-[#b19172]" />
+      </div>
+
       {/* ── Services ── */}
       <section>
-        {/* Section header */}
-        <div className="max-w-container mx-auto px-6 pt-16 pb-12">
-          <p className="text-[#b19172] text-[10px] font-bold uppercase tracking-[0.3em] mb-3">
-            {t("home:services_eyebrow")}
-          </p>
-          <h2 className="text-3xl font-bold text-black mb-4">{t("home:popular_services")}</h2>
-          <div className="w-8 h-[2px] bg-[#b19172]"></div>
-        </div>
-
-        {/* One service per full-width row, alternating image side */}
         {[1, 2, 3, 4, 5, 6].map((i) => {
           const isEven = i % 2 === 0;
           return (
-            <div key={i} className="relative h-[800px] overflow-hidden mx-auto max-w-container">
-              {/* Photo / gradient — full card background */}
+            <div
+              key={i}
+              className="relative min-h-screen md:h-[800px] overflow-hidden md:mx-auto md:max-w-container"
+            >
+              {/* Background — mobile: cover, desktop: contain */}
               <div
-                className="absolute inset-0"
-                style={{ background: SERVICE_BG[i - 1] }}
+                className="absolute inset-0 md:hidden"
+                style={{ backgroundImage: `url(${SERVICE_IMAGES[i - 1]})`, backgroundSize: "cover", backgroundPosition: "center" }}
                 aria-hidden="true"
               />
+              <div
+                className="absolute inset-0 hidden md:block"
+                style={{ backgroundImage: `url(${SERVICE_IMAGES[i - 1]})`, backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: isEven ? "left" : "right" }}
+                aria-hidden="true"
+              />
+              {/* White blur overlay */}
+              <div className="absolute inset-0 hidden md:block bg-white/30" aria-hidden="true" />
 
-              {/* Text side — white panel, half width, left for odd / right for even */}
-              <div className={`absolute inset-y-0 w-full md:w-1/2 bg-transparent flex items-center overflow-hidden ${isEven ? "right-0" : "left-0"}`}>
+              {/* ── Desktop: half-width text panel ── */}
+              <div
+                className={`hidden md:flex absolute inset-y-0 w-1/2 bg-white items-center overflow-hidden ${isEven ? "right-0" : "left-0"}`}
+              >
                 {/* Watermark number */}
                 <span className="absolute right-0 top-1/2 -translate-y-1/2 pr-6 text-[clamp(120px,13vw,220px)] font-black leading-none select-none pointer-events-none text-gray-100">
                   {String(i).padStart(2, "0")}
                 </span>
-
                 {/* Content */}
                 <div className="relative z-10 px-12 lg:px-20 py-16">
                   <h3 className="text-[70px] font-bold text-black leading-[1.05]">
@@ -103,6 +148,27 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
                     className="inline-block border border-black text-black px-8 py-3 text-[11px] font-bold uppercase tracking-[0.2em] hover:border-[#b19172] hover:text-[#b19172] transition-colors duration-300"
                   >
                     {t("common:learn_more")}
+                  </Link>
+                </div>
+              </div>
+
+              {/* ── Mobile: full-screen overlay at bottom ── */}
+              <div className="md:hidden absolute inset-x-0 bottom-0 px-6 pb-10 pt-28 bg-gradient-to-t from-black/75 via-black/40 to-transparent">
+                <h3 className="text-[2rem] font-bold text-white leading-tight mb-1">
+                  {t(`services:item_${i}_title`)}
+                </h3>
+                <p className="text-[1.75rem] font-bold text-[var(--color-brand)] italic leading-tight mb-4">
+                  {t(`services:item_${i}_tagline`)}
+                </p>
+                <p className="text-sm text-white/70 leading-relaxed mb-6 line-clamp-2">
+                  {t(`services:item_${i}_desc`)}
+                </p>
+                <div className="flex flex-col gap-3">
+                  <Link
+                    href={`/${locale}/contacts`}
+                    className="block border border-white  text-center py-4 text-xs font-bold uppercase tracking-widest"
+                  >
+                    <span className="text-white">{t("home:consultation")}</span>
                   </Link>
                 </div>
               </div>

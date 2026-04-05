@@ -4,13 +4,13 @@ import '../styles/globals.css';
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://kazo.clinic"),
   title: {
-    default: "Kazo Dental Clinic — Caring Smiles",
-    template: "%s | Kazo Dental Clinic",
+    default: "Advance Dental Clinic",
+    template: "%s | Individual Smile",
   },
   description: "Modern dental clinic offering preventive, cosmetic and surgical dentistry. Book your appointment today!",
   openGraph: {
     type: "website",
-    siteName: "Kazo Dental Clinic",
+    siteName: "Advance Dental Clinic - Individual Smile",
   },
 };
 
