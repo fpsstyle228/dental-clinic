@@ -55,12 +55,6 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
             </p>
             <div className="flex flex-col gap-3 mt-6">
               <Link
-                href={`/${locale}/contacts`}
-                className="block bg-black text-white text-center py-4 text-[11px] font-bold uppercase tracking-[0.2em]"
-              >
-                {t("home:cta")}
-              </Link>
-              <Link
                 href={`/${locale}/services`}
                 className="block border border-white text-center py-4 text-[11px] font-bold uppercase tracking-[0.2em]"
               >

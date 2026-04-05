@@ -45,22 +45,27 @@ export default async function ServicesPage({ params }: { params: Promise<{ local
       {/* Services list */}
       <div className="space-y-3">
         {[1, 2, 3, 4, 5, 6].map((i) => (
-          <div key={i} className="border border-gray-200 rounded-xl p-5 flex items-start gap-5">
-            <span className="text-gray-400 text-sm font-light w-6 flex-shrink-0 pt-1">
+          <div key={i} className="border border-gray-200 rounded-xl p-5">
+              <div className="flex items-start gap-5">
+                  <span className="text-gray-400 text-sm font-light w-6 flex-shrink-0 pt-1">
               {String(i).padStart(2, "0")}
             </span>
-            <div className="w-20 h-20 rounded-full bg-gray-200 flex-shrink-0" />
-            <div className="flex-1 min-w-0">
-              <h3 className="font-black text-lg uppercase mb-1">
-                {t(`services:item_${i}_title`)}
-              </h3>
-              <p className="text-sm text-gray-600 leading-relaxed">
-                {t(`services:item_${i}_desc`)}
+                  <div className="w-20 h-20 rounded-full bg-gray-200 flex-shrink-0" />
+                  <div className="flex-1 min-w-0">
+                      <h3 className="font-black text-lg uppercase mb-1">
+                          {t(`services:item_${i}_title`)}
+                      </h3>
+                      <p className="text-sm text-gray-600 leading-relaxed hidden md:block">
+                          {t(`services:item_${i}_desc`)}
+                      </p>
+                  </div>
+                  <div className="text-[var(--color-brand)] font-bold text-xl flex-shrink-0 text-right min-w-[6rem]">
+                      {t(`services:item_${i}_price`)}
+                  </div>
+              </div>
+              <p className="text-sm text-gray-600 leading-relaxed md:hidden mt-2">
+                  {t(`services:item_${i}_desc`)}
               </p>
-            </div>
-            <div className="text-[var(--color-brand)] font-bold text-xl flex-shrink-0 text-right min-w-[6rem]">
-              {t(`services:item_${i}_price`)}
-            </div>
           </div>
         ))}
       </div>
