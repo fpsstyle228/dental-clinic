@@ -47,7 +47,7 @@ export default async function ServicesPage({ params }: { params: Promise<{ local
         {[1, 2, 3, 4, 5, 6].map((i) => (
           <div key={i} className="border border-gray-200 rounded-xl p-5">
               <div className="flex items-start gap-5">
-                  <span className="text-gray-400 text-sm font-light w-6 flex-shrink-0 pt-1">
+                  <span className="text-gray-400 text-sm font-light w-6 flex-shrink-0 pt-1 hidden md:block">
               {String(i).padStart(2, "0")}
             </span>
                   <div className="w-20 h-20 rounded-full bg-gray-200 flex-shrink-0" />
