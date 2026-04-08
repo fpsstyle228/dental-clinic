@@ -1,32 +1,93 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import ContactsForm from "@/components/contactsForm";
-import { loadTranslations, makeT } from "@/lib/i18n.server";
+import { loadTranslations, makeT, supportedLocales } from "@/lib/i18n.server";
 import type { Locale } from "@/lib/i18n.server";
 
 export const dynamic = "force-static";
+
+const OG_LOCALE: Record<string, string> = {
+  en: "en_US", uk: "uk_UA", de: "de_DE", es: "es_ES",
+};
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }): Promise<Metadata> {
   const { locale } = await params;
   const dicts = await loadTranslations(locale, ["contacts"]);
   const t = makeT(dicts);
+
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://kazo.clinic";
+  const locPath = locale === "en" ? "" : `/${locale}`;
+  const canonical = `${baseUrl}${locPath}/contacts`;
+
+  const languages: Record<string, string> = { "x-default": `${baseUrl}/contacts` };
+  for (const loc of supportedLocales) {
+    const p = loc === "en" ? "" : `/${loc}`;
+    languages[loc] = `${baseUrl}${p}/contacts`;
+  }
+
   return {
     title: t("contacts:meta_title"),
     description: t("contacts:meta_description"),
+    alternates: { canonical, languages },
+    openGraph: {
+      type: "website",
+      url: canonical,
+      title: t("contacts:meta_title"),
+      description: t("contacts:meta_description"),
+      locale: OG_LOCALE[locale] ?? "en_US",
+      images: [
+        {
+          url: `${baseUrl}/images/main-page/hero.jpg`,
+          width: 1200,
+          height: 800,
+          alt: t("contacts:headline"),
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: t("contacts:meta_title"),
+      description: t("contacts:meta_description"),
+      images: [`${baseUrl}/images/main-page/hero.jpg`],
+    },
   };
 }
 
 export default async function ContactsPage({ params }: { params: Promise<{ locale: Locale }> }) {
   const { locale } = await params;
-  const dicts = await loadTranslations(locale, ["contacts"]);
+  const dicts = await loadTranslations(locale, ["contacts", "common"]);
   const t = makeT(dicts);
 
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://kazo.clinic";
+  const locPath = locale === "en" ? "" : `/${locale}`;
   const mapQuery = encodeURIComponent(t("contacts:address_value"));
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    url: `${baseUrl}${locPath}/contacts`,
+    mainEntity: {
+      "@type": "Dentist",
+      name: t("common:clinic_name"),
+      telephone: t("contacts:phone_raw"),
+      email: t("contacts:email_value"),
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: t("contacts:address_value"),
+      },
+      openingHours: t("contacts:hours_value"),
+    },
+  };
 
   return (
     <div className="max-w-container mx-auto px-4 pt-8 pb-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
       {/* Heading */}
-      <h1 className="text-4xl font-black uppercase tracking-tight leading-none text-center mb-10 md:text-7xl">
+      <h1 className="text-4xl font-black uppercase tracking-tight leading-none mb-10 md:text-7xl">
         {t("contacts:headline")}
       </h1>
 
@@ -137,30 +198,6 @@ export default async function ContactsPage({ params }: { params: Promise<{ local
             >
               {t("contacts:call_me")}
             </Link>
-          </div>
-
-          {/* Social icons */}
-          <div className="flex gap-4 mt-auto pt-4">
-            <a href="#" aria-label="Instagram" className="text-[var(--color-brand)] hover:opacity-75 transition-opacity">
-              <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="12" cy="12" r="11" />
-                <rect x="7" y="7" width="10" height="10" rx="2.5" ry="2.5" />
-                <circle cx="12" cy="12" r="2.5" />
-                <line x1="16.5" y1="7.5" x2="16.5" y2="7.5" />
-              </svg>
-            </a>
-            <a href="#" aria-label="YouTube" className="text-[var(--color-brand)] hover:opacity-75 transition-opacity">
-              <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="12" cy="12" r="11" />
-                <polygon points="10 8 16 12 10 16 10 8" />
-              </svg>
-            </a>
-            <a href="#" aria-label="Facebook" className="text-[var(--color-brand)] hover:opacity-75 transition-opacity">
-              <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="12" cy="12" r="11" />
-                <path d="M15 8h-1.5A1.5 1.5 0 0 0 12 9.5V11h3l-.5 3H12v7" />
-              </svg>
-            </a>
           </div>
         </div>
       </div>

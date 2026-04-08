@@ -5,13 +5,9 @@ export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://kazo.clinic"),
   title: {
     default: "Advance Dental Clinic",
-    template: "%s | Individual Smile",
+    template: "%s | Advance Dental Clinic",
   },
-  description: "Modern dental clinic offering preventive, cosmetic and surgical dentistry. Book your appointment today!",
-  openGraph: {
-    type: "website",
-    siteName: "Advance Dental Clinic - Individual Smile",
-  },
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

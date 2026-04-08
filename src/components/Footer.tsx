@@ -37,35 +37,6 @@ function PinIcon() {
   );
 }
 
-function InstagramIcon() {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-      <circle cx="12" cy="12" r="11" />
-      <rect x="7" y="7" width="10" height="10" rx="2.5" ry="2.5" />
-      <circle cx="12" cy="12" r="2.5" />
-      <line x1="16.5" y1="7.5" x2="16.51" y2="7.5" />
-    </svg>
-  );
-}
-
-function YoutubeIcon() {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-      <circle cx="12" cy="12" r="11" />
-      <polygon points="10 8 16 12 10 16 10 8" />
-    </svg>
-  );
-}
-
-function FacebookIcon() {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-      <circle cx="12" cy="12" r="11" />
-      <path d="M15 8h-1.5A1.5 1.5 0 0 0 12 9.5V11h3l-.5 3H12v7" />
-    </svg>
-  );
-}
-
 export default function Footer({
   clinicShortName,
   footerTagline,
@@ -130,20 +101,6 @@ export default function Footer({
               <p className="text-sm text-gray-600">{address}</p>
             </div>
           </div>
-
-          {/* Social icons */}
-          <div className="flex items-center gap-3 self-center">
-            <a href="#" aria-label="Instagram" className="text-[var(--color-brand)] hover:opacity-70 transition-opacity">
-              <InstagramIcon />
-            </a>
-            <a href="#" aria-label="YouTube" className="text-[var(--color-brand)] hover:opacity-70 transition-opacity">
-              <YoutubeIcon />
-            </a>
-            <a href="#" aria-label="Facebook" className="text-[var(--color-brand)] hover:opacity-70 transition-opacity">
-              <FacebookIcon />
-            </a>
-          </div>
-
         </div>
       </div>
     </footer>

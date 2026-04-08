@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { loadTranslations, makeT } from "@/lib/i18n.server";
+import { loadTranslations, makeT, supportedLocales } from "@/lib/i18n.server";
 import type { Locale } from "@/lib/i18n.server";
 
 const SERVICE_IMAGES = [
@@ -14,23 +14,93 @@ const SERVICE_IMAGES = [
 
 export const dynamic = "force-static";
 
+const OG_LOCALE: Record<string, string> = {
+  en: "en_US",
+  uk: "uk_UA",
+  de: "de_DE",
+  es: "es_ES",
+};
+
 export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }): Promise<Metadata> {
   const { locale } = await params;
   const dicts = await loadTranslations(locale, ["home", "common"]);
   const t = makeT(dicts);
+
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://kazo.clinic";
+  const locPath = locale === "en" ? "" : `/${locale}`;
+  const canonical = `${baseUrl}${locPath}`;
+
+  const languages: Record<string, string> = { "x-default": baseUrl };
+  for (const loc of supportedLocales) {
+    languages[loc] = loc === "en" ? baseUrl : `${baseUrl}/${loc}`;
+  }
+
   return {
     title: t("home:meta_title"),
     description: t("home:meta_description"),
+    alternates: {
+      canonical,
+      languages,
+    },
+    openGraph: {
+      type: "website",
+      url: canonical,
+      title: t("home:meta_title"),
+      description: t("home:meta_description"),
+      siteName: t("common:clinic_name"),
+      locale: OG_LOCALE[locale] ?? "en_US",
+      images: [
+        {
+          url: `${baseUrl}/images/main-page/hero.jpg`,
+          width: 1200,
+          height: 800,
+          alt: t("home:headline"),
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: t("home:meta_title"),
+      description: t("home:meta_description"),
+      images: [`${baseUrl}/images/main-page/hero.jpg`],
+    },
   };
 }
 
 export default async function HomePage({ params }: { params: Promise<{ locale: Locale }> }) {
   const { locale } = await params;
-  const dicts = await loadTranslations(locale, ["home", "common", "services"]);
+  const dicts = await loadTranslations(locale, ["home", "common", "services", "contacts"]);
   const t = makeT(dicts);
+
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://kazo.clinic";
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Dentist",
+    name: t("common:clinic_name"),
+    description: t("home:meta_description"),
+    url: baseUrl,
+    telephone: t("contacts:phone_raw"),
+    email: t("contacts:email_value"),
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: t("contacts:address_value"),
+    },
+    openingHours: t("contacts:hours_value"),
+    priceRange: "$$",
+    medicalSpecialty: "Dentistry",
+    availableService: [1, 2, 3, 4, 5, 6].map((i) => ({
+      "@type": "MedicalTherapy",
+      name: t(`services:item_${i}_title`),
+    })),
+  };
 
   return (
     <div className="bg-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
 
       {/* ── Hero ── */}
       <section className="relative min-h-screen flex items-end md:items-stretch md:min-h-0 md:border-b md:border-gray-100 md:py-36">
@@ -116,7 +186,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
                 aria-hidden="true"
               />
               {/* White blur overlay */}
-              <div className="absolute inset-0 hidden md:block bg-white/30" aria-hidden="true" />
+              <div className="absolute inset-0 block bg-white/30" aria-hidden="true" />
 
               {/* ── Desktop: half-width text panel ── */}
               <div
@@ -147,7 +217,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
               </div>
 
               {/* ── Mobile: full-screen overlay at bottom ── */}
-              <div className="md:hidden absolute inset-x-0 bottom-0 px-6 pb-10 pt-28 bg-gradient-to-t from-black/75 via-black/40 to-transparent">
+              <div className="md:hidden absolute inset-x-0 bottom-0 px-6 pb-10 pt-28 pb-20 bg-gradient-to-t from-black/75 via-black/40 to-transparent">
                 <h3 className="text-[2rem] font-bold text-white leading-tight mb-1">
                   {t(`services:item_${i}_title`)}
                 </h3>

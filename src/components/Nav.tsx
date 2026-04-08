@@ -126,18 +126,7 @@ export default function Nav({
       <header className="hidden md:block sticky top-0 z-50">
         {/* Top bar */}
         <div className="bg-white border-b border-gray-100">
-          <div className="max-w-container mx-auto px-4 flex items-center justify-between h-9">
-            <div className="flex items-center gap-3">
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-gray-400 hover:text-[#b19172] transition-colors">
-                <FacebookIcon />
-              </a>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-gray-400 hover:text-[#b19172] transition-colors">
-                <InstagramIcon />
-              </a>
-              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="text-gray-400 hover:text-[#b19172] transition-colors">
-                <YoutubeIcon />
-              </a>
-            </div>
+          <div className="max-w-container mx-auto px-4 flex items-center justify-end h-9">
             <div className="flex items-center gap-5">
               <div className="flex items-center gap-1 text-xs font-semibold">
                 {locales.map((l, i) => (
