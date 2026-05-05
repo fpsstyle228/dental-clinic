@@ -7,7 +7,9 @@
       "Bash(node -e \"const pkg = require\\(''./node_modules/tailwindcss/package.json''\\); console.log\\(pkg.version\\)\")",
       "Bash(npm install:*)",
       "Bash(node -e \"const pkg = require\\(''./node_modules/tailwindcss/package.json''\\); console.log\\(pkg.version\\)\" --prefix \"C:\\\\Users\\\\Сашка\\\\WebstormProjects\\\\dental-clinic\")",
-      "Bash(node -e \"const pkg = require\\(''C:/Users/Сашка/WebstormProjects/dental-clinic/node_modules/tailwindcss/package.json''\\); console.log\\(pkg.version\\)\")"
+      "Bash(node -e \"const pkg = require\\(''C:/Users/Сашка/WebstormProjects/dental-clinic/node_modules/tailwindcss/package.json''\\); console.log\\(pkg.version\\)\")",
+      "WebSearch",
+      "WebFetch(domain:unsplash.com)"
     ]
   }
 }

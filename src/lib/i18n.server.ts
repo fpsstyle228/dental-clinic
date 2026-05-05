@@ -41,6 +41,6 @@ export function makeT(dicts: Dictionaries) {
   };
 }
 
-export const supportedLocales = ['en', 'es', 'uk', 'de'] as const;
+export const supportedLocales = ['en', 'es', 'uk', 'de', 'ru'] as const;
 export type Locale = typeof supportedLocales[number];
 export const defaultLocale: Locale = 'en';

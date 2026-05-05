@@ -7,7 +7,7 @@ import type { Locale } from "@/lib/i18n.server";
 export const dynamic = "force-static";
 
 const OG_LOCALE: Record<string, string> = {
-  en: "en_US", uk: "uk_UA", de: "de_DE", es: "es_ES",
+  en: "en_US", uk: "uk_UA", de: "de_DE", es: "es_ES", ru: "ru_RU",
 };
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }): Promise<Metadata> {
@@ -66,7 +66,7 @@ export default async function ServicesPage({ params }: { params: Promise<{ local
     "@type": "ItemList",
     name: t("services:meta_title"),
     url: `${baseUrl}${locPath}/services`,
-    itemListElement: [1, 2, 3, 4, 5, 6].map((i) => ({
+    itemListElement: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((i) => ({
       "@type": "ListItem",
       position: i,
       item: {
@@ -111,7 +111,7 @@ export default async function ServicesPage({ params }: { params: Promise<{ local
 
       {/* Services list */}
       <div className="space-y-3">
-        {[1, 2, 3, 4, 5, 6].map((i) => (
+        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((i) => (
           <div key={i} className="border border-gray-200 rounded-xl p-5">
               <div className="flex items-start gap-5">
                   <span className="text-gray-400 text-sm font-light w-6 flex-shrink-0 pt-1 hidden md:block">

@@ -10,6 +10,7 @@ const localeLabelMap: Record<string, string> = {
   es: "Esp",
   uk: "Ukr",
   de: "Deu",
+  ru: "Рус",
 };
 
 export async function generateStaticParams() {

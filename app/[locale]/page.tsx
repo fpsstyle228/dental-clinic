@@ -10,6 +10,11 @@ const SERVICE_IMAGES = [
   "/images/main-page/MEDICAL_SEDATION.jpg",
   "/images/main-page/CARIES_TREATMENT.jpg",
   "/images/main-page/DENTAL_IMPLANTS.jpg",
+  "/images/main-page/Veneeres.png",
+  "/images/main-page/Coronki.png",
+  "/images/main-page/delete.png",
+  "/images/main-page/Aligment.png",
+  "/images/main-page/Coronki_implant.png",
 ];
 
 export const dynamic = "force-static";
@@ -19,6 +24,7 @@ const OG_LOCALE: Record<string, string> = {
   uk: "uk_UA",
   de: "de_DE",
   es: "es_ES",
+  ru: "ru_RU",
 };
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }): Promise<Metadata> {
@@ -58,12 +64,6 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: L
         },
       ],
     },
-    twitter: {
-      card: "summary_large_image",
-      title: t("home:meta_title"),
-      description: t("home:meta_description"),
-      images: [`${baseUrl}/images/main-page/hero.jpg`],
-    },
   };
 }
 
@@ -89,7 +89,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
     openingHours: t("contacts:hours_value"),
     priceRange: "$$",
     medicalSpecialty: "Dentistry",
-    availableService: [1, 2, 3, 4, 5, 6].map((i) => ({
+    availableService: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((i) => ({
       "@type": "MedicalTherapy",
       name: t(`services:item_${i}_title`),
     })),
@@ -167,7 +167,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
 
       {/* ── Services ── */}
       <section>
-        {[1, 2, 3, 4, 5, 6].map((i) => {
+        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((i) => {
           const isEven = i % 2 === 0;
           return (
             <div
