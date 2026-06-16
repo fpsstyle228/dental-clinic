@@ -4,7 +4,7 @@
 type AppRoutes = "/" | "/[locale]" | "/[locale]/contacts" | "/[locale]/gallery" | "/[locale]/services"
 type PageRoutes = never
 type LayoutRoutes = "/" | "/[locale]"
-type RedirectRoutes = never
+type RedirectRoutes = "/"
 type RewriteRoutes = never
 type Routes = AppRoutes | PageRoutes | LayoutRoutes | RedirectRoutes | RewriteRoutes
 

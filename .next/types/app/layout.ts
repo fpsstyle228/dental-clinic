@@ -1,4 +1,4 @@
-// File: C:\Users\Сашка\WebstormProjects\dental-clinic\app\layout.tsx
+// File: C:\Users\Sasha\WebstormProjects\dental-clinic\app\layout.tsx
 import * as entry from '../../../app/layout.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

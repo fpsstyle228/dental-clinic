@@ -112,35 +112,33 @@ export default async function ServicesPage({ params }: { params: Promise<{ local
       {/* Services list */}
       <div className="space-y-3">
         {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((i) => (
-          <div key={i} className="border border-gray-200 rounded-xl p-5">
-              <div className="flex items-start gap-5">
-                  <span className="text-gray-400 text-sm font-light w-6 flex-shrink-0 pt-1 hidden md:block">
-              {String(i).padStart(2, "0")}
-            </span>
-                  <div className="w-20 h-20 rounded-full bg-gray-200 flex-shrink-0">
-                    <Image
-                        width={90}
-                        height={90}
-                      src={`/images/services-logo/${i}.jpg`}
-                      alt={`Service ${i}`}
-                      className="object-cover rounded-full"
-                    />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                      <h3 className="font-black text-lg uppercase mb-1">
-                          {t(`services:item_${i}_title`)}
-                      </h3>
-                      <p className="text-sm text-gray-600 leading-relaxed hidden md:block">
-                          {t(`services:item_${i}_desc`)}
-                      </p>
-                  </div>
-                  <div className="text-[var(--color-brand)] font-bold text-xl flex-shrink-0 text-right min-w-[6rem]">
-                      {t(`services:item_${i}_price`)}
-                  </div>
+          <div key={i} className="border border-gray-200 rounded-xl p-4 md:p-5 overflow-hidden">
+            <div className="grid grid-cols-[3.5rem_minmax(0,1fr)] md:grid-cols-[1.5rem_5rem_minmax(0,1fr)_auto] gap-x-3 md:gap-x-5 gap-y-2 items-start">
+              <span className="hidden md:block text-gray-400 text-sm font-light w-6 pt-1 col-start-1 row-start-1">
+                {String(i).padStart(2, "0")}
+              </span>
+              <div className="w-14 h-14 md:w-20 md:h-20 rounded-full bg-gray-200 overflow-hidden col-start-1 md:col-start-2 row-start-1">
+                <Image
+                  width={90}
+                  height={90}
+                  src={`/images/services-logo/${i}.jpg`}
+                  alt={`Service ${i}`}
+                  className="object-cover rounded-full w-full h-full"
+                />
               </div>
-              <p className="text-sm text-gray-600 leading-relaxed md:hidden mt-2">
-                  {t(`services:item_${i}_desc`)}
+              <h3 className="font-black text-base md:text-lg uppercase col-start-2 md:col-start-3 row-start-1 min-w-0">
+                {t(`services:item_${i}_title`)}
+              </h3>
+              <div className="text-[var(--color-brand)] font-bold text-base md:text-xl text-right col-start-2 md:col-start-4 row-start-2 md:row-start-1 md:min-w-[6rem]">
+                {t(`services:item_${i}_price`)}
+              </div>
+              <p className="text-sm text-gray-600 leading-relaxed hidden md:block col-start-3 row-start-2">
+                {t(`services:item_${i}_desc`)}
               </p>
+              <p className="text-sm text-gray-600 leading-relaxed md:hidden col-span-2 row-start-3">
+                {t(`services:item_${i}_desc`)}
+              </p>
+            </div>
           </div>
         ))}
       </div>
