@@ -11,10 +11,10 @@ const SERVICE_IMAGES = [
   "/images/main-page/CARIES_TREATMENT.jpg",
   "/images/main-page/DENTAL_IMPLANTS.jpg",
   "/images/main-page/Veneeres.png",
-  "/images/main-page/Coronki.png",
+  "/images/main-page/Coronki_implant.png",
   "/images/main-page/delete.png",
   "/images/main-page/Aligment.png",
-  "/images/main-page/Coronki_implant.png",
+  "/images/main-page/Coronki.png",
 ];
 
 export const dynamic = "force-static";

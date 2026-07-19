@@ -1,4 +1,9 @@
 {
+  "/_not-found/page": "app/_not-found/page.js",
+  "/robots.txt/route": "app/robots.txt/route.js",
+  "/sitemap.xml/route": "app/sitemap.xml/route.js",
+  "/page": "app/page.js",
+  "/[locale]/gallery/page": "app/[locale]/gallery/page.js",
   "/[locale]/services/page": "app/[locale]/services/page.js",
   "/[locale]/contacts/page": "app/[locale]/contacts/page.js",
   "/[locale]/page": "app/[locale]/page.js"
